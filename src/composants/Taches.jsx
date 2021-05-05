@@ -29,11 +29,21 @@ export default function Taches({etatTaches, utilisateur}) {
     const texte = e.target.texteTache.value;
     if(texte.trim() !== '') {
       e.target.reset();
+                                         // envoyer id util > le id tache > prendre la valeur actuelle > set true
       crudTaches.creer(uid, {texte: texte, completee: false}).then(
         // Actualiser l'état nouvelleTache avec l'identifiant de la tâche ajoutée
         docTache => setTaches([...taches, {id: docTache.id, ...docTache.data()}])
       );
     }
+  }
+
+  function supprimerTache(idtache){
+    crudTaches.supprimer(utilisateur.uid, idtache).then(
+      () => {
+        // en filtrant on exite le setTache qui fera reafficher react 
+        setTaches(taches.filter(task => task.id != idtache))
+      }
+    )
   }
 
   return (
@@ -49,7 +59,7 @@ export default function Taches({etatTaches, utilisateur}) {
       </form>
       <div className="listeTaches">
         {
-          taches.map(tache => <Tache key={tache.id} {... tache} />)
+          taches.map(tache => <Tache key={tache.id} {... tache} supprimerTache={supprimerTache} />)
         }
       </div>
     </section>
