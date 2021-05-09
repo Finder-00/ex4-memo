@@ -3,10 +3,8 @@ import formaterDateEtHeure from '../services/utilitaires';
 import IconButton from '@material-ui/core/IconButton';
 import DoneIcon from '@material-ui/icons/Done';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { supprimer } from '../services/crud-taches';
-import gererAjoutTache from './Taches';
 
-export default function Tache({id, texte, completee, date, supprimerTache}) {
+export default function Tache({id, texte, completee, date, supprimerTache, etatCompleter}) {
   return (
     <div className={"Tache " + (completee && " completee")}>
       <IconButton
@@ -15,7 +13,7 @@ export default function Tache({id, texte, completee, date, supprimerTache}) {
         title="Cliquez pour marquer cette tâche complétée" 
       >
         {/* fonction update (voir documentation) */}
-        <DoneIcon onClick={() => completee}/>
+        <DoneIcon onClick={() => etatCompleter(completee)} />
       </IconButton>
       <span className="texte">{texte}</span>
       <span className="date">({formaterDateEtHeure(date)})</span>

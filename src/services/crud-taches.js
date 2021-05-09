@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import Tache from '../composants/Tache';
 import { collUtil, collTaches } from './config';
 import { instanceFirestore } from './firebase-initialisation';
 
@@ -39,4 +40,8 @@ export async function lireTout(uid) {
 
 export async function supprimer(uid, id) {
   return instanceFirestore.collection(collUtil).doc(uid).collection(collTaches).doc(id).delete()
+}
+
+export async function completee(uid, id) {
+  return instanceFirestore.collection(collUtil).doc(uid).collection(collTaches).doc(id).update();
 }
