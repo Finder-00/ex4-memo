@@ -40,14 +40,26 @@ export default function Taches({etatTaches, utilisateur}) {
     crudTaches.supprimer(uid, idtache).then(
       () => {
         // en filtrant on excite le setTache qui fera reafficher react 
-        setTaches(taches.filter(task => task.id !== idtache))
+        setTaches(taches.filter(task => {
+          return task.id !== idtache
+        }))
       }
     )
   }
-
-  function etatCompleter(idtache){
-    crudTaches.completee(uid, idtache).then(
-      () => setTaches(taches.map(idtache.completee !== idtache.completee))
+//filter, map, reduce
+  function etatCompleter(idtache, completee){
+    crudTaches.completee(uid, idtache, completee).then(
+      () => {
+        setTaches(taches.map(
+          t => {
+            // si son id == a la tache qui a ete changer
+            if(t.id === idtache){
+              t.completee = !completee;
+            }
+            return t;
+          }
+        ))
+      }
     )
   }
 
@@ -55,7 +67,7 @@ export default function Taches({etatTaches, utilisateur}) {
     <section className="Taches">
       <form onSubmit={e => gererAjoutTache(uid, e)}>
         <input 
-          type="text"   
+          type="text"
           placeholder="Ajoutez une tâche ..." 
           name="texteTache"
           autoComplete="off" 

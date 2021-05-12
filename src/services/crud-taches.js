@@ -42,6 +42,6 @@ export async function supprimer(uid, id) {
   return instanceFirestore.collection(collUtil).doc(uid).collection(collTaches).doc(id).delete()
 }
 
-export async function completee(uid, id) {
-  return instanceFirestore.collection(collUtil).doc(uid).collection(collTaches).doc(id).update();
+export async function completee(uid, idTache, etatTache) {
+  return instanceFirestore.collection(collUtil).doc(uid).collection(collTaches).doc(idTache).update({"completee": !etatTache})
 }
