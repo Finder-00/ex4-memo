@@ -46,7 +46,7 @@ export default function Taches({etatTaches, utilisateur}) {
       }
     )
   }
-//filter, map, reduce
+
   function etatCompleter(idtache, completee){
     crudTaches.completee(uid, idtache, completee).then(
       () => {

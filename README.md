@@ -1,3 +1,4 @@
 # Exercice 4 : Application Memo
 
-Code de départ de l'application Memo à utiliser pour l'exercice 4 du cours 582-4PA.
+Firebase Hosting : https://react---prog-reactive.web.app/
+Github Pages : https://Finder-00.github.io/ex4-memo/
